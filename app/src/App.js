@@ -5,6 +5,7 @@ import Header from "./components/layout/Header";
 import Home from "./components/pages/Home";
 import SearchBook from "./components/pages/SearchBook";
 import SearchBookResult from "./components/pages/SearchBookResult";
+import BookInfo from "./components/pages/BookInfo";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import UserContext from "./context/UserContext";
@@ -55,6 +56,7 @@ export default function App() {
                             <Route path="/register" component={Register} />
                             <Route path="/searchBook" component={SearchBook} />
                             <Route path="/searchBookResult" component={SearchBookResult} />
+                            <Route path="/bookinfo" component={BookInfo} />
                         </Switch>
                     </div>
                 </UserContext.Provider>
