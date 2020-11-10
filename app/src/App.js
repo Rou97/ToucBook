@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Axios from "axios";
 import Header from "./components/layout/Header";
 import Home from "./components/pages/Home";
+import SearchBook from "./components/pages/SearchBook";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import UserContext from "./context/UserContext";
@@ -51,6 +52,7 @@ export default function App() {
                             <Route exact path="/" component={Home} />
                             <Route path="/login" component={Login} />
                             <Route path="/register" component={Register} />
+                            <Route path="/searchBook" component={SearchBook} />
                         </Switch>
                     </div>
                 </UserContext.Provider>

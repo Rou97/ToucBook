@@ -11,12 +11,13 @@ export default function Home() {
                 <div>
                     <h1>Bienvenido {userData.user.displayName}</h1>
                     <p>Hola</p>
+                    <Link to="/searchBook">Buscador de libros</Link>
                 </div>
             ) : (
-                    <p>
+                    <div>
                         <h2>No has iniciado sesión</h2>
                         <Link to="/login">Iniciar sesión</Link>
-                    </p>
+                    </div>
                 )}
         </div>
     );
