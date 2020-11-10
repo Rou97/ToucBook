@@ -1,19 +1,26 @@
 import React, { useState, useContext } from "react";
 import UserContext from "../../context/UserContext";
+import { useHistory } from "react-router-dom";
 import Axios from "axios";
 
 export default function SearchBook() {
     const [data, setData] = useState();
     const { userData } = useContext(UserContext);
+    const history = useHistory();
 
     const submit = async (e) => {
         e.preventDefault();
 
         try {
-            console.log(data);
             const info = { data }
             const resData = await Axios.post("http://localhost:5000/search/book", info);
-            console.log(resData);
+            const arrBooks = resData.data;
+            console.log(arrBooks);
+            //history.push("/searchBookResult");
+            history.push({
+                pathname: '/searchBookResult',
+                state: arrBooks
+            });
         } catch (err) {
             console.log(err)
         }

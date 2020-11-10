@@ -4,7 +4,6 @@ const books = require('google-books-search');
 router.post("/book", async (req, res) => {
     try {
         let { data } = req.body;
-        console.log(res);
 
         books.search(`${data}`, function (error, results) {
             if (!error) {

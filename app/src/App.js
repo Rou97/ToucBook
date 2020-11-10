@@ -4,6 +4,7 @@ import Axios from "axios";
 import Header from "./components/layout/Header";
 import Home from "./components/pages/Home";
 import SearchBook from "./components/pages/SearchBook";
+import SearchBookResult from "./components/pages/SearchBookResult";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import UserContext from "./context/UserContext";
@@ -53,6 +54,7 @@ export default function App() {
                             <Route path="/login" component={Login} />
                             <Route path="/register" component={Register} />
                             <Route path="/searchBook" component={SearchBook} />
+                            <Route path="/searchBookResult" component={SearchBookResult} />
                         </Switch>
                     </div>
                 </UserContext.Provider>
