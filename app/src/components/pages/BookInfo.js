@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useLocation } from "react-router-dom";
 import Axios from "axios";
+import UserContext from "../../context/UserContext";
 
 export default function BookInfo() {
     const location = useLocation();
+    const { userData } = useContext(UserContext);
 
     useEffect(() => {
         console.log('a');
@@ -12,12 +14,10 @@ export default function BookInfo() {
 
     const addBook = async () => {
         try {
-            console.log('addbook')
-            // const info = { data };
-            console.log(data);
-            const resData = await Axios.post("http://localhost:5000/search/addBook", data);
-
-            //console.log(resData);
+            console.log('addbook');
+            const info = { data, userData };
+            const resData = await Axios.post("http://localhost:5000/search/addBook", info);
+            console.log(resData);
         } catch (err) {
             console.log(err)
         }

@@ -3,40 +3,15 @@ const Schema = mongoose.Schema;
 
 const ObjectId = Schema.Types.ObjectId;
 
-const userSchema = new Schema({
-    email: {
+const librarySchema = new mongoose.Schema({
+    userID: {
         type: ObjectId,
         ref: 'User'
     },
-
-    books: [{
-        ISBN: {
-            type: String,
-            required: true,
-            unique: true
-        },
-        title: {
-            type: String,
-            required: true
-        },
-        subtitle: {
-            type: String
-        },
-        authors: {
-            type: Array
-        },
-        image: {
-            type: String
-        },
-        description: {
-            type: String
-        },
-        language: {
-            type: String
-        }
-    }]
+    bookID: {
+        type: ObjectId,
+        ref: 'Book'
+    },
 });
 
-const Library = mongoose.model('library', userSchema);
-
-module.exports = Library;
+module.exports = Library = mongoose.model("library", librarySchema);

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const books = require('google-books-search');
 const Book = require("../models/books");
+const Library = require("../models/userLibrary");
 
 router.post("/book", async (req, res) => {
     try {
@@ -21,11 +22,20 @@ router.post("/book", async (req, res) => {
 
 router.post("/addBook", async (req, res) => {
     try {
-        const data = req.body;
+
+        async function addToLibrary(idBook, idUser) {
+            console.log('funcion ' + idBook, idUser);
+            let newBookInLibrary = { userID: idUser, bookID: idBook }
+            console.log(newBookInLibrary);
+            let saveInLibrary = await Library.create(newBookInLibrary);
+            console.log(saveInLibrary);
+
+        }
+
+        const { data, userData } = req.body;
         const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = data;
 
         const ISBN = industryIdentifiers[1].identifier;
-        //const author = authors[0];
         const existingBook = await Book.findOne({ ISBN: ISBN });
 
         const newBook = {
@@ -39,18 +49,16 @@ router.post("/addBook", async (req, res) => {
             publisher
         };
 
-        // console.log(newBook);
-        // console.log(existingBook);
-
         if (!existingBook) {
             console.log('hey')
             let savedBook = await Book.create(newBook);
             console.log(savedBook);
-            res.json(savedBook);
+            addToLibrary(savedBook._id, userData.user.id)
+            //res.json(savedBook);
         } else {
             console.log('reee')
+            addToLibrary(existingBook._id, userData.user.id);
         }
-
 
     } catch (err) {
         res.status(500).json({ error: err.message });
