@@ -28,3 +28,4 @@ mongoose.connect(
 
 app.use("/users", require("./routes/userRouter"));
 app.use("/search", require("./routes/search"));
+app.use("/library", require("./routes/library"));

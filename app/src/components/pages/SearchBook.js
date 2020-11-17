@@ -12,7 +12,7 @@ export default function SearchBook() {
         e.preventDefault();
 
         try {
-            const info = { data }
+            const info = { data };
             const resData = await Axios.post("http://localhost:5000/search/book", info);
             const arrBooks = resData.data;
             console.log(arrBooks);
