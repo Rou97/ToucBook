@@ -8,6 +8,7 @@ export default function SearchBookResult() {
 
     useEffect(() => {
         console.log('a');
+        console.log(location);
         console.log(location.state);
     }, [location]);
 
