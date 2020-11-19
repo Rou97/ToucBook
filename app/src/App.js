@@ -10,6 +10,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import UserContext from "./context/UserContext";
 import Library from "./components/pages/Library";
+import Match from "./components/pages/Match";
 
 import "./style.css";
 
@@ -59,6 +60,7 @@ export default function App() {
                             <Route path="/searchBookResult" component={SearchBookResult} />
                             <Route path="/bookinfo" component={BookInfo} />
                             <Route path="/library" component={Library} />
+                            <Route path="/match" component={Match} />
                         </Switch>
                     </div>
                 </UserContext.Provider>

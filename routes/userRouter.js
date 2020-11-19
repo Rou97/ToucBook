@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 
 router.post("/register", async (req, res) => {
     try {
-        let { email, password, passwordCheck, displayName } = req.body;
+        let { email, password, passwordCheck, displayName, provincia } = req.body;
 
         // validate
 
@@ -36,6 +36,7 @@ router.post("/register", async (req, res) => {
             email,
             password: passwordHash,
             displayName,
+            provincia
         });
         const savedUser = await newUser.save();
         res.json(savedUser);

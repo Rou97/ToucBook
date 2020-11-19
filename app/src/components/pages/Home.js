@@ -13,13 +13,13 @@ export default function Home() {
                     <h1>Bienvenido {userData.user.displayName}</h1>
                     <p>Hola</p>
                     <Link to="/searchBook">Buscador de libros</Link>
-                    {/* <Link to="/library" >Biblioteca</Link> */}
                     <Link to={{
                         pathname: '/library',
                         state: {
                             data: userData.user
                         }
                     }}>Biblioteca</Link>
+                    <Link to="/match" >Match</Link>
 
                 </div>
             ) : (
