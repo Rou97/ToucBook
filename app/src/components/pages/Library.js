@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import Axios from "axios";
-//import Book from "./Book.js";
+import Book from "./Book.js";
 
 export default function Library() {
     const [res, setRes] = useState('');
@@ -41,8 +41,8 @@ export default function Library() {
 
             {res.data ? (
 
-                res.data.map((book, i) => {
-                    return (<h2 key={i}>{book.title}</h2>)
+                res.data.map((book, index) => {
+                    return <Book key={index} book={book}></Book>
                 })
 
             ) : (<div>Sad</div>)}

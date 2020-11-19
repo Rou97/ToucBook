@@ -24,18 +24,25 @@ export default function BookInfo() {
     };
 
     const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = location.state;
+    let ISBN, image;
+    if (!industryIdentifiers) {
+        ISBN = location.state.ISBN
+        image = location.state.image
+    }
+    console.log(ISBN);
+
     const data = { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher };
+    console.log(image);
     return (
         <div>
             <button onClick={addBook}>Añadir a biblioteca</button>
             <h1>{title}</h1>
             <h1>{authors}</h1>
-            <h1>{industryIdentifiers[0].identifier}</h1>
-            <h1>{industryIdentifiers[1].identifier}</h1>
+            {!industryIdentifiers ? (<h1>{ISBN}</h1>) : (<h1>{industryIdentifiers[1].identifier}</h1>)}
             <h1>{language}</h1>
             <h1>{pageCount}</h1>
             <h1>{publisher}</h1>
-            <img alt="Foto de portada" src={thumbnail} />
+            {!industryIdentifiers ? (<img alt="Foto de portada" src={image} />) : (<img alt="Foto de portada" src={thumbnail} />)}
             <h1>{description}</h1>
         </div>
     )

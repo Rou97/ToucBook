@@ -9,6 +9,7 @@ router.post("/book", async (req, res) => {
 
         books.search(`${data}`, function (error, results) {
             if (!error) {
+                console.log(results)
                 res.json(results);
             } else {
                 res.json(error);
@@ -35,7 +36,9 @@ router.post("/addBook", async (req, res) => {
         const { data, userData } = req.body;
         const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = data;
 
+
         const ISBN = industryIdentifiers[1].identifier;
+        const image = thumbnail;
         const existingBook = await Book.findOne({ ISBN: ISBN });
 
         const newBook = {
@@ -43,11 +46,14 @@ router.post("/addBook", async (req, res) => {
             authors,
             ISBN,
             language,
-            thumbnail,
+            image,
             description,
             pageCount,
             publisher
         };
+
+        console.log(1);
+        console.log(newBook);
 
         if (!existingBook) {
             console.log('hey')
