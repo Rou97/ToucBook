@@ -26,7 +26,7 @@ router.post("/addBook", async (req, res) => {
 
         async function addToLibrary(idBook, idUser) {
             console.log('funcion ' + idBook, idUser);
-            let newBookInLibrary = { userID: idUser, bookID: idBook }
+            let newBookInLibrary = { userID: idUser, bookID: idBook, bookMood: true }
             console.log(newBookInLibrary);
             let saveInLibrary = await Library.create(newBookInLibrary);
             console.log(saveInLibrary);

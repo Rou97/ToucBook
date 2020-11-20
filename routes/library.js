@@ -22,11 +22,32 @@ router.get("/", async (req, res) => {
 
         listOfBooks = await Book.find({ _id: { $in: a } });
 
-        res.json(listOfBooks);
+        const info = {
+            listOfBooks,
+            library
+        }
+
+        res.json(info);
+        //res.json(listOfBooks);
+
 
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
+
+router.post("/changemood", async (req, res) => {
+
+    let { _id, bookMood } = req.body;
+
+    bookMood = !bookMood;
+
+    //let updateMoodBook;
+
+    const updateMoodBook = await Library.findByIdAndUpdate(_id, { bookMood: bookMood });
+
+
+    console.log(updateMoodBook);
+})
 
 module.exports = router;

@@ -12,6 +12,9 @@ const librarySchema = new mongoose.Schema({
         type: ObjectId,
         ref: 'Book'
     },
+    bookMood: {
+        type: Boolean,
+    }
 });
 
 module.exports = Library = mongoose.model("library", librarySchema);
