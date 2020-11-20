@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import Axios from "axios";
 import Book from "./Book.js";
+import BookMood from "./BookMood.js";
 
 export default function Library() {
     const [res, setRes] = useState('');
@@ -23,17 +24,9 @@ export default function Library() {
     }, [location.state.data.id]);
 
 
-    async function changeMood(x) {
-        console.log(x);
-        const a = await Axios.post("http://localhost:5000/library/changemood", x);
-    }
-
-
     return (
         <div>
             Biblioteca
-
-
 
             {res.data ? (
                 res.data.listOfBooks.map((book, index) => {
@@ -41,16 +34,15 @@ export default function Library() {
                         <Book key={index} book={book}></Book>
                         {res.data.library.map((a, i) => {
                             if (a.bookID === book._id) {
+
                                 if (a.bookMood) {
-                                    return (<div key={i}>
-                                        <h3>Lo tengo</h3>
-                                        <button onClick={() => changeMood(a)}>Cambiar a lo quiero</button>
-                                    </div>)
+                                    return (
+                                        <BookMood key={i} a={a}></BookMood>
+                                    )
                                 } else {
-                                    return (<div key={i}>
-                                        <h3>Lo quiero</h3>
-                                        <button onClick={() => changeMood(a)}>Cambiar a lo tengo</button>
-                                    </div>)
+                                    return (
+                                        <BookMood key={i} a={a}></BookMood>
+                                    )
                                 }
                             }
                         })}

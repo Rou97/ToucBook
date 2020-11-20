@@ -40,14 +40,9 @@ router.post("/changemood", async (req, res) => {
 
     let { _id, bookMood } = req.body;
 
-    bookMood = !bookMood;
+    const updateMoodBook = await Library.findByIdAndUpdate(_id, { bookMood });
 
-    //let updateMoodBook;
-
-    const updateMoodBook = await Library.findByIdAndUpdate(_id, { bookMood: bookMood });
-
-
-    console.log(updateMoodBook);
+    res.json(updateMoodBook);
 })
 
 module.exports = router;
