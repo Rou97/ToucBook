@@ -9,8 +9,8 @@ export default function BookInfo() {
 
     useEffect(() => {
         console.log('a');
-        console.log(location.state);
-    }, [location]);
+
+    });
 
     const addBook = async () => {
         try {
@@ -18,6 +18,19 @@ export default function BookInfo() {
             const info = { data, userData };
             const resData = await Axios.post("http://localhost:5000/search/addBook", info);
             console.log(resData);
+        } catch (err) {
+            console.log(err)
+        }
+    };
+
+    const removeBook = async () => {
+        try {
+            console.log('removebook');
+            console.log(data)
+            const info = { data, userData };
+            console.log(info)
+            const resData = await Axios.delete("http://localhost:5000/search/removeBook", { data: info });
+            // console.log(resData);
         } catch (err) {
             console.log(err)
         }
@@ -36,6 +49,7 @@ export default function BookInfo() {
     return (
         <div>
             <button onClick={addBook}>Añadir a biblioteca</button>
+            <button onClick={removeBook}>Eliminar de la biblioteca</button>
             <h1>{title}</h1>
             <h1>{authors}</h1>
             {!industryIdentifiers ? (<h1>{ISBN}</h1>) : (<h1>{industryIdentifiers[1].identifier}</h1>)}
