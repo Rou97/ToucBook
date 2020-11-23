@@ -2,12 +2,14 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import Axios from "axios";
 import UserContext from "../../context/UserContext";
+import BookInfoButtons from "./BookMood.js";
 
 export default function BookInfo() {
     const location = useLocation();
     const { userData } = useContext(UserContext);
     const [listBooks, setListBooks] = useState();
     const [button, setButton] = useState();
+    const [buttonName, setButtonName] = useState();
 
     const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = location.state;
     let ISBN, image;
@@ -21,8 +23,9 @@ export default function BookInfo() {
         try {
             console.log('addbook');
             const info = { data, userData };
+            setButtonName("Eliminar de la biblioteca")
+            setButton(<button onClick={removeBook}>{"a " + buttonName}</button>)
             const resData = await Axios.post("http://localhost:5000/search/addBook", info);
-            console.log(resData);
         } catch (err) {
             console.log(err)
         }
@@ -31,10 +34,12 @@ export default function BookInfo() {
     const removeBook = async () => {
         try {
             console.log('removebook');
-            console.log(data)
             const info = { data, userData };
             console.log(info)
+            setButtonName("Añadir a la biblioteca")
+            setButton(<button onClick={addBook}>{"b " + buttonName}</button>);
             const resData = await Axios.delete("http://localhost:5000/search/removeBook", { data: info });
+
         } catch (err) {
             console.log(err)
         }
@@ -50,12 +55,16 @@ export default function BookInfo() {
                 setListBooks(resMoodBook);
             }
 
+
             if (listBooks && button === undefined) {
+                console.log(listBooks.data)
                 listBooks.data.listOfBooks.forEach(element => {
                     if (element.ISBN === industryIdentifiers[1].identifier) {
-                        setButton(<button onClick={removeBook}>Eliminar de la biblioteca</button>)
+                        setButtonName("Eliminar de la biblioteca");
+                        setButton(<button onClick={removeBook}>{"a " + buttonName}</button>)
                     } else {
-                        setButton(<button onClick={addBook}>Añadir a biblioteca</button>)
+                        setButtonName("Añadir a la biblioteca");
+                        setButton(<button onClick={addBook}>{"b " + buttonName}</button>);
                     }
                 })
             }
@@ -65,10 +74,11 @@ export default function BookInfo() {
         if (userData.user) {
             getMoodBook();
         }
-    }, [userData, listBooks, button]);
+    }, [userData, listBooks]);
 
     return (
         <div>
+            {buttonName}
             {button}
             <h1>{title}</h1>
             <h1>{authors}</h1>
