@@ -2,20 +2,12 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import Axios from "axios";
 import UserContext from "../../context/UserContext";
-<<<<<<< HEAD
-=======
-import BookInfoButtons from "./BookMood.js";
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
 
 export default function BookInfo() {
     const location = useLocation();
     const { userData } = useContext(UserContext);
     const [listBooks, setListBooks] = useState();
     const [button, setButton] = useState();
-<<<<<<< HEAD
-=======
-    const [buttonName, setButtonName] = useState();
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
 
     const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = location.state;
     let ISBN, image;
@@ -29,15 +21,9 @@ export default function BookInfo() {
         try {
             console.log('addbook');
             const info = { data, userData };
-<<<<<<< HEAD
             setButton(<button onClick={removeBook}>Eliminar de la biblioteca</button>)
             const resData = await Axios.post("http://localhost:5000/search/addBook", info);
 
-=======
-            setButtonName("Eliminar de la biblioteca")
-            setButton(<button onClick={removeBook}>{"a " + buttonName}</button>)
-            const resData = await Axios.post("http://localhost:5000/search/addBook", info);
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
         } catch (err) {
             console.log(err)
         }
@@ -47,16 +33,8 @@ export default function BookInfo() {
         try {
             console.log('removebook');
             const info = { data, userData };
-<<<<<<< HEAD
             setButton(<button onClick={addBook}>Añadir a la biblioteca</button>);
             const resData = await Axios.delete("http://localhost:5000/search/removeBook", { data: info });
-=======
-            console.log(info)
-            setButtonName("Añadir a la biblioteca")
-            setButton(<button onClick={addBook}>{"b " + buttonName}</button>);
-            const resData = await Axios.delete("http://localhost:5000/search/removeBook", { data: info });
-
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
         } catch (err) {
             console.log(err)
         }
@@ -67,16 +45,11 @@ export default function BookInfo() {
             let id = {
                 userID: userData.user.id
             };
-<<<<<<< HEAD
-
-=======
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
             const resMoodBook = await Axios.get("http://localhost:5000/library", { params: id });
             if (!listBooks) {
                 setListBooks(resMoodBook);
             }
 
-<<<<<<< HEAD
             if (listBooks && button === undefined) {
                 listBooks.data.listOfBooks.forEach(element => {
                     if (element.title === title && a === 0) {
@@ -88,22 +61,6 @@ export default function BookInfo() {
                 })
             } else {
                 setButton(<button onClick={addBook}>Añadir a la biblioteca</button>);
-=======
-
-            if (listBooks && button === undefined) {
-                listBooks.data.listOfBooks.forEach(element => {
-                    if (element.title === title) {
-                        setButtonName("Eliminar de la biblioteca");
-                        setButton(<button onClick={removeBook}>{"a " + buttonName}</button>)
-                    } else {
-                        setButtonName("Añadir a la biblioteca");
-                        setButton(<button onClick={addBook}>{"b " + buttonName}</button>);
-                    }
-                })
-            } else {
-                setButtonName("Añadir a la biblioteca");
-                setButton(<button onClick={addBook}>{"b " + buttonName}</button>);
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
             }
 
         }
@@ -111,18 +68,11 @@ export default function BookInfo() {
         if (userData.user) {
             getMoodBook();
         }
-<<<<<<< HEAD
         let a = 0;
-=======
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
     }, [userData, listBooks]);
 
     return (
         <div>
-<<<<<<< HEAD
-=======
-            {buttonName}
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
             {button}
             <h1>{title}</h1>
             <h1>{authors}</h1>
