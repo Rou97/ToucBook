@@ -30,7 +30,7 @@ export default function Library() {
 
             {res.data ? (
                 res.data.listOfBooks.map((book, index) => {
-                    return <div>
+                    return <div key={index}>
                         <Book key={index} book={book}></Book>
                         {res.data.library.map((a, i) => {
                             if (a.bookID === book._id) {

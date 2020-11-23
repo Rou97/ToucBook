@@ -14,6 +14,9 @@ const librarySchema = new mongoose.Schema({
     },
     bookMood: {
         type: Boolean,
+    },
+    bookLocation: {
+        type: String
     }
 });
 

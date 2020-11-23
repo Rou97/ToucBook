@@ -26,18 +26,16 @@ router.post("/book", async (req, res) => {
 router.post("/addBook", async (req, res) => {
     try {
 
-        async function addToLibrary(idBook, idUser) {
-            console.log('funcion ' + idBook, idUser);
-            let newBookInLibrary = { userID: idUser, bookID: idBook, bookMood: true }
-            console.log(newBookInLibrary);
+        async function addToLibrary(idBook, idUser, provincia) {
+            let newBookInLibrary = { userID: idUser, bookID: idBook, bookMood: true, bookLocation: provincia }
             let saveInLibrary = await Library.create(newBookInLibrary);
-            console.log(saveInLibrary);
-
         }
 
         const { data, userData } = req.body;
         const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = data;
 
+        const user = await User.findById({ _id: userData.user.id });
+        console.log(user);
 
         const ISBN = industryIdentifiers[1].identifier;
         const image = thumbnail;
@@ -54,18 +52,12 @@ router.post("/addBook", async (req, res) => {
             publisher
         };
 
-        console.log(1);
-        console.log(newBook);
-
         if (!existingBook) {
-            console.log('hey')
             let savedBook = await Book.create(newBook);
-            console.log(savedBook);
-            addToLibrary(savedBook._id, userData.user.id)
+            addToLibrary(savedBook._id, userData.user.id, user.provincia)
             //res.json(savedBook);
         } else {
-            console.log('reee')
-            addToLibrary(existingBook._id, userData.user.id);
+            addToLibrary(existingBook._id, userData.user.id, user.provincia);
         }
 
     } catch (err) {
