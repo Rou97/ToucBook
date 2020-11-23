@@ -7,7 +7,6 @@ import BookMood from "./BookMood.js";
 export default function Library() {
     const [res, setRes] = useState('');
     const location = useLocation();
-    console.log(location);
 
     useEffect(() => {
         try {
@@ -19,7 +18,7 @@ export default function Library() {
                 setRes(resData);
             }
             fetchData();
-            console.log('a')
+            console.log('1')
         } catch (error) {
             console.error(error);
         }
