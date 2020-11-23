@@ -18,6 +18,7 @@ export default function Library() {
                 setRes(resData);
             }
             fetchData();
+            console.log('a')
         } catch (error) {
             console.error(error);
         }
