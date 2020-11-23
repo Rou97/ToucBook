@@ -8,6 +8,7 @@ const Book = require("../models/books");
 router.get("/", async (req, res) => {
     try {
         let { userID } = req.query;
+        console.log(userID);
         let a = [];
         let listOfBooks = [];
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import Axios from "axios";
 import UserContext from "../../context/UserContext";
@@ -6,11 +6,16 @@ import UserContext from "../../context/UserContext";
 export default function BookInfo() {
     const location = useLocation();
     const { userData } = useContext(UserContext);
+    const [listBooks, setListBooks] = useState();
+    const [button, setButton] = useState();
 
-    useEffect(() => {
-        console.log('a');
-
-    });
+    const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = location.state;
+    let ISBN, image;
+    if (!industryIdentifiers) {
+        ISBN = location.state.ISBN
+        image = location.state.image
+    }
+    const data = { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher };
 
     const addBook = async () => {
         try {
@@ -30,26 +35,41 @@ export default function BookInfo() {
             const info = { data, userData };
             console.log(info)
             const resData = await Axios.delete("http://localhost:5000/search/removeBook", { data: info });
-            // console.log(resData);
         } catch (err) {
             console.log(err)
         }
     };
 
-    const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = location.state;
-    let ISBN, image;
-    if (!industryIdentifiers) {
-        ISBN = location.state.ISBN
-        image = location.state.image
-    }
-    console.log(ISBN);
+    useEffect(() => {
+        async function getMoodBook() {
+            let id = {
+                userID: userData.user.id
+            };
+            const resMoodBook = await Axios.get("http://localhost:5000/library", { params: id });
+            if (!listBooks) {
+                setListBooks(resMoodBook);
+            }
 
-    const data = { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher };
-    console.log(image);
+            if (listBooks && button === undefined) {
+                listBooks.data.listOfBooks.forEach(element => {
+                    if (element.ISBN === industryIdentifiers[1].identifier) {
+                        setButton(<button onClick={removeBook}>Eliminar de la biblioteca</button>)
+                    } else {
+                        setButton(<button onClick={addBook}>Añadir a biblioteca</button>)
+                    }
+                })
+            }
+
+        }
+
+        if (userData.user) {
+            getMoodBook();
+        }
+    }, [userData, listBooks, button]);
+
     return (
         <div>
-            <button onClick={addBook}>Añadir a biblioteca</button>
-            <button onClick={removeBook}>Eliminar de la biblioteca</button>
+            {button}
             <h1>{title}</h1>
             <h1>{authors}</h1>
             {!industryIdentifiers ? (<h1>{ISBN}</h1>) : (<h1>{industryIdentifiers[1].identifier}</h1>)}
