@@ -57,9 +57,8 @@ export default function BookInfo() {
 
 
             if (listBooks && button === undefined) {
-                console.log(listBooks.data)
                 listBooks.data.listOfBooks.forEach(element => {
-                    if (element.ISBN === industryIdentifiers[1].identifier) {
+                    if (element.title === title) {
                         setButtonName("Eliminar de la biblioteca");
                         setButton(<button onClick={removeBook}>{"a " + buttonName}</button>)
                     } else {
@@ -67,6 +66,9 @@ export default function BookInfo() {
                         setButton(<button onClick={addBook}>{"b " + buttonName}</button>);
                     }
                 })
+            } else {
+                setButtonName("Añadir a la biblioteca");
+                setButton(<button onClick={addBook}>{"b " + buttonName}</button>);
             }
 
         }

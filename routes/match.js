@@ -12,20 +12,22 @@ router.get("/", async (req, res) => {
         let count = 0;
 
         matches.forEach(async (element) => {
-            const user = await User.findById({ _id: element.userID });
-            const book = await Book.findById({ _id: element.bookID });
+            if (element) {
+                const user = await User.findById({ _id: element.userID });
+                const book = await Book.findById({ _id: element.bookID });
 
-            if (count !== matches.length) {
-                match = [];
-            }
+                if (count !== matches.length) {
+                    match = [];
+                }
 
-            match.push(user, book);
-            info.push(match)
-            count += 1;
+                match.push(user, book);
+                info.push(match)
+                count += 1;
 
-            if (count === matches.length) {
-                console.log(info)
-                res.json(info);
+                if (count === matches.length) {
+                    console.log(info)
+                    res.json(info);
+                }
             }
         })
     }
@@ -38,6 +40,7 @@ router.get("/", async (req, res) => {
         bookOffered.forEach(async (element) => {
             const a = await Library.find({ userID: { $ne: id }, bookID: element.bookID, bookMood: true })
             matches.push(a[0]);
+
             if (matches.length === bookOffered.length) {
                 makeMatches(matches)
             }

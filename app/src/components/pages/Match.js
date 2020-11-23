@@ -6,18 +6,7 @@ import User from "./User.js";
 
 export default function Match() {
     const [matches, setMatches] = useState('');
-
     const { userData } = useContext(UserContext);
-
-    // async function getMatches() {
-    //     const resData = await Axios.get("http://localhost:5000/match", { params: userData.user });
-    //     console.log(resData);
-    //     setMatches(resData.data);
-    // }
-
-    // useEffect(() => {
-    //     getMatches();
-    // }, []);
 
     useEffect(() => {
         async function getMatches() {
@@ -37,7 +26,7 @@ export default function Match() {
                         <User user={a[0]}></User>
                     </div>
                 })) :
-                (console.log('b'))
+                (console.log(''))
             }
         </div>
     )
