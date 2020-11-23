@@ -4,6 +4,10 @@ import UserContext from "../../context/UserContext";
 
 export default function Home() {
     const { userData } = useContext(UserContext);
+<<<<<<< HEAD
+=======
+    console.log(userData);
+>>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
 
     return (
         <div>

@@ -24,11 +24,14 @@ mongoose.connect(
     }
 );
 
+<<<<<<< HEAD
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('app/build'))
 }
 
+=======
+>>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
 // set up routes
 
 app.use("/users", require("./routes/userRouter"));

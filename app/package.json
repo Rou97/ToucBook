@@ -7,7 +7,10 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
+<<<<<<< HEAD
     "dotenv": "^8.2.0",
+=======
+>>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",

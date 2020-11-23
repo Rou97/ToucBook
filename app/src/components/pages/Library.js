@@ -18,7 +18,10 @@ export default function Library() {
                 setRes(resData);
             }
             fetchData();
+<<<<<<< HEAD
             console.log('a')
+=======
+>>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
         } catch (error) {
             console.error(error);
         }

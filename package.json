@@ -5,10 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
+<<<<<<< HEAD
     "dev": "nodemon index",
     "build": "cd app && npm run build",
     "install-client": "cd app && npm install",
     "heroku-postbuild": "npm run install-client && npm run build"
+=======
+    "dev": "nodemon index"
+>>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
   },
   "repository": {
     "type": "git",
