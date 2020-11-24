@@ -51,20 +51,20 @@ export default function App() {
         <>
             <BrowserRouter>
                 <UserContext.Provider value={{ userData, setUserData }}>
-                    <Header />
-                    <div className="container">
-                        <Switch>
-                            <Route exact path="/" component={Home} />
-                            <Route path="/login" component={Login} />
-                            <Route path="/register" component={Register} />
-                            <Route path="/searchBook" component={SearchBook} />
-                            <Route path="/searchBookResult" component={SearchBookResult} />
-                            <Route path="/bookinfo" component={BookInfo} />
-                            <Route path="/library" component={Library} />
-                            <Route path="/match" component={Match} />
-                            <Route path="/userinfo" component={UserInfo} />
-                        </Switch>
-                    </div>
+                    {/* <Header /> */}
+                    {/* <div> */}
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
+                        <Route path="/searchBook" component={SearchBook} />
+                        <Route path="/searchBookResult" component={SearchBookResult} />
+                        <Route path="/bookinfo" component={BookInfo} />
+                        <Route path="/library" component={Library} />
+                        <Route path="/match" component={Match} />
+                        <Route path="/userinfo" component={UserInfo} />
+                    </Switch>
+                    {/* </div> */}
                 </UserContext.Provider>
             </BrowserRouter>
         </>

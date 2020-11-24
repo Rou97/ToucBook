@@ -38,11 +38,7 @@ export default function SearchBook() {
                             onChange={(e) => setData(e.target.value)}
                         />
 
-<<<<<<< HEAD
                         <input type="submit" value="Buscar" />
-=======
-                        <input type="submit" value="Log in" />
->>>>>>> c206ea0d624ab421ffa5a9876190070e0747b126
                     </form>
                 </div>
             ) : (

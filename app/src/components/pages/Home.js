@@ -19,12 +19,21 @@ export default function Home() {
                         }
                     }}>Biblioteca</Link>
                     <Link to="/match" >Match</Link>
-
+                    {/* cyan lighten-5 */}
                 </div>
             ) : (
                     <div>
-                        <h2>No has iniciado sesión</h2>
-                        <Link to="/login">Iniciar sesión</Link>
+                        <div className="row ">
+                            <h1 className="center-align">Bienvenido a ToucBook</h1>
+                        </div>
+                        <div className="row">
+                            <div class="col s6 center-align">
+                                <Link className="waves-effect waves-light btn-large light-blue" to="/login" >Iniciar sesion</Link>
+                            </div>
+                            <div class="col s6 center-align">
+                                <Link className="waves-effect waves-light btn-large light-blue" to="/register" >Registrarse</Link>
+                            </div>
+                        </div>
                     </div>
                 )}
         </div>

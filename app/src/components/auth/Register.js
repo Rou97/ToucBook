@@ -39,47 +39,73 @@ export default function Register() {
     };
 
     return (
+
         <div>
-            <h2>Registrarse</h2>
+            <div className="row ">
+                <div class="col s12 center-align">
+                    <h4>Regístrate</h4>
+                </div>
+            </div>
             <form onSubmit={submit}>
-                <label htmlFor="register-email">Email</label>
-                <input
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                <div className="row ">
+                    <div class="col s12 ">
 
-                <label htmlFor="register-password">Contraseña</label>
-                <input
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="Verify password"
-                    onChange={(e) => setPasswordCheck(e.target.value)}
-                />
+                        <input
+                            className="input-field inline"
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <label htmlFor="register-email">Email</label>
+                    </div>
+                </div>
 
-                <label htmlFor="register-display-name">Nombre de usuario</label>
-                <input
-                    type="text"
-                    onChange={(e) => setDisplayName(e.target.value)}
-                />
+                <div className="row ">
+                    <div class="col s12 ">
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <label htmlFor="register-password">Contraseña</label>
+                    </div>
+                </div>
 
-                <label>
-                    Provincias
-                <input
-                        list="provincias"
-                        name="provincias"
-                        onChange={(e) => setProvincias(e.target.value)}
-                    />
-                </label>
-                <datalist id="provincias">
-                    <option value="Madrid" />
-                    <option value="Barcelona" />
-                </datalist>
+                <div className="row ">
+                    <div class="col s12 ">
+                        <input
+                            type="password"
+                            onChange={(e) => setPasswordCheck(e.target.value)}
+                        />
+                        <label htmlFor="register-password-again">Repetir contraseña</label>
+                    </div>
+                </div>
+
+                <div className="row ">
+                    <div class="col s12 ">
+                        <input
+                            type="text"
+                            onChange={(e) => setDisplayName(e.target.value)}
+                        />
+                        <label htmlFor="register-display-name">Nombre de usuario</label>
+                    </div>
+                </div>
+
+                <div className="row ">
+                    <div class="col s12 ">
+                        <input
+                            list="provincias"
+                            name="provincias"
+                            onChange={(e) => setProvincias(e.target.value)}
+                        />
+                        <label>Provincias</label>
+                        <datalist id="provincias">
+                            <option value="Madrid" />
+                            <option value="Barcelona" />
+                        </datalist>
+                    </div>
+                </div>
 
 
-                <input type="submit" value="Register" />
+                <input type="submit" value="Enviar" className="waves-effect waves-light btn-large light-blue" />
             </form>
         </div>
     );

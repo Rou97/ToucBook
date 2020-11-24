@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <header>
             <Link to="/">
-                <h1 className="title">ToucBook</h1>
+                <h5>ToucBook</h5>
             </Link>
             <AuthOptions />
         </header>
