@@ -8,7 +8,6 @@ const Book = require("../models/books");
 router.get("/", async (req, res) => {
     try {
         let { userID } = req.query;
-        console.log(userID);
         let a = [];
         let listOfBooks = [];
 
@@ -19,8 +18,6 @@ router.get("/", async (req, res) => {
             a.push(element.bookID);
         });
 
-        //console.log(a);
-
         listOfBooks = await Book.find({ _id: { $in: a } });
 
         const info = {
@@ -29,9 +26,6 @@ router.get("/", async (req, res) => {
         }
 
         res.json(info);
-        //res.json(listOfBooks);
-
-
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

@@ -3,7 +3,7 @@ const books = require('google-books-search');
 const Book = require("../models/books");
 const Library = require("../models/userLibrary");
 const User = require("../models/userModel");
-const auth = require("../middleware/auth");
+//const auth = require("../middleware/auth");
 
 router.post("/book", async (req, res) => {
     try {
@@ -11,7 +11,6 @@ router.post("/book", async (req, res) => {
 
         books.search(`${data}`, function (error, results) {
             if (!error) {
-                console.log(results)
                 res.json(results);
             } else {
                 res.json(error);
@@ -35,7 +34,6 @@ router.post("/addBook", async (req, res) => {
         const { title, authors, industryIdentifiers, language, thumbnail, description, pageCount, publisher } = data;
 
         const user = await User.findById({ _id: userData.user.id });
-        console.log(user);
 
         const ISBN = industryIdentifiers[1].identifier;
         const image = thumbnail;
@@ -55,7 +53,6 @@ router.post("/addBook", async (req, res) => {
         if (!existingBook) {
             let savedBook = await Book.create(newBook);
             addToLibrary(savedBook._id, userData.user.id, user.provincia)
-            //res.json(savedBook);
         } else {
             addToLibrary(existingBook._id, userData.user.id, user.provincia);
         }
@@ -71,17 +68,10 @@ router.delete("/removeBook", async (req, res) => {
 
         const { id } = userData.user;
         const { title } = data;
-
-        console.log(title);
-
         const checkUser = await User.findOne({ _id: id });
         const checkBook = await Book.findOne({ title })
 
-        console.log(checkBook);
-
         const removeLibrary = await Library.findOneAndDelete({ userID: checkUser._id, bookID: checkBook._id });
-
-        console.log(removeLibrary);
 
     } catch (err) {
         res.status(500).json({ error: err.message });

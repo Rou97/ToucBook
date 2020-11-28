@@ -19,10 +19,9 @@ export default function BookInfo() {
 
     const addBook = async () => {
         try {
-            console.log('addbook');
             const info = { data, userData };
-            setButton(<button onClick={removeBook}>Eliminar de la biblioteca</button>)
-            const resData = await Axios.post("http://localhost:5000/search/addBook", info);
+            setButton(<button onClick={removeBook} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">clear</i></button>)
+            await Axios.post("http://localhost:5000/search/addBook", info);
 
         } catch (err) {
             console.log(err)
@@ -31,10 +30,9 @@ export default function BookInfo() {
 
     const removeBook = async () => {
         try {
-            console.log('removebook');
             const info = { data, userData };
-            setButton(<button onClick={addBook}>Añadir a la biblioteca</button>);
-            const resData = await Axios.delete("http://localhost:5000/search/removeBook", { data: info });
+            setButton(<button onClick={addBook} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></button>)
+            await Axios.delete("http://localhost:5000/search/removeBook", { data: info });
         } catch (err) {
             console.log(err)
         }
@@ -54,14 +52,14 @@ export default function BookInfo() {
             if (listBooks && button === undefined) {
                 listBooks.data.listOfBooks.forEach(element => {
                     if (element.title === title && a === 0) {
-                        setButton(<button onClick={removeBook}>Eliminar de la biblioteca</button>);
+                        setButton(<button onClick={removeBook} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">clear</i></button>)
                         a = 1;
                     } else if (a === 0) {
-                        setButton(<button onClick={addBook}>Añadir a la biblioteca</button>);
+                        setButton(<button onClick={addBook} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></button>)
                     }
                 })
             } else {
-                setButton(<button onClick={addBook}>Añadir a la biblioteca</button>);
+                setButton(<button onClick={addBook} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></button>)
             }
 
         }
@@ -73,16 +71,25 @@ export default function BookInfo() {
     }, [userData, listBooks]);
 
     return (
-        <div>
-            {button}
-            <h1>{title}</h1>
-            <h1>{authors}</h1>
-            {!industryIdentifiers ? (<h1>{ISBN}</h1>) : (<h1>{industryIdentifiers[1].identifier}</h1>)}
-            <h1>{language}</h1>
-            <h1>{pageCount}</h1>
-            <h1>{publisher}</h1>
-            {!industryIdentifiers ? (<img alt="Foto de portada" src={image} />) : (<img alt="Foto de portada" src={thumbnail} />)}
-            <h1>{description}</h1>
+        <div className="row">
+            <div className="col s12 m6">
+                <div className="card">
+                    <div className="card-image">
+                        {!industryIdentifiers ? (<img alt="Foto de portada" src={image} />) : (<img alt="Foto de portada" src={thumbnail} />)}
+                        {button}
+                    </div>
+                    <div className="card-content">
+
+                        <h6>{title}</h6>
+                        <p>{authors}</p>
+                        {!industryIdentifiers ? (<p>{ISBN}</p>) : (<p>{industryIdentifiers[1].identifier}</p>)}
+                        <p>{language}</p>
+                        <p>{pageCount}</p>
+                        <p>{publisher}</p>
+                        <p>{description}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

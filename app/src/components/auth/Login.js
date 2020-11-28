@@ -34,14 +34,14 @@ export default function Login() {
     return (
         <div>
             <div className="row ">
-                <div class="col s12 center-align">
+                <div className="col s12 center-align">
                     <h4>Inicio de sesion</h4>
                 </div>
             </div>
             <form onSubmit={submit}>
 
                 <div className="row ">
-                    <div class="col s12 ">
+                    <div className="col s12 ">
                         <input
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
@@ -51,7 +51,7 @@ export default function Login() {
                 </div>
 
                 <div className="row ">
-                    <div class="col s12 ">
+                    <div className="col s12 ">
                         <input
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}

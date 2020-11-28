@@ -7,7 +7,6 @@ export default function Book(props) {
 
     function handleClick(e) {
         e.preventDefault();
-        console.log('The link was clicked.');
         history.push({
             pathname: '/bookinfo',
             state: props.book
@@ -15,8 +14,18 @@ export default function Book(props) {
     }
 
     return (
-        <div>
-            <h1 onClick={handleClick}>{props.book.title}</h1>
+        <div onClick={handleClick} className="card">
+            <div className="card-image">
+                {props.book.image ?
+                    (<img alt="Imagen de la portada del libro" src={props.book.image} />) :
+                    (<img alt="Imagen de la portada del libro" src={props.book.thumbnail} />)}
+            </div>
+            <div className="card-content">
+                <h6 className="card-title">{props.book.title}</h6>
+                <p>{props.book.description}</p>
+            </div>
         </div>
+
     )
 }
+

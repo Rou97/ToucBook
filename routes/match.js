@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
                 count += 1;
 
                 if (count === matches.length) {
-                    console.log(info)
                     res.json(info);
                 }
             }

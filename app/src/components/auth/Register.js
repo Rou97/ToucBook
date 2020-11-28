@@ -16,17 +16,14 @@ export default function Register() {
 
     const submit = async (e) => {
         e.preventDefault();
-        console.log(e);
 
         try {
             const newUser = { email, password, passwordCheck, displayName, provincia };
-            console.log(newUser);
             await Axios.post("http://localhost:5000/users/register", newUser);
             const loginRes = await Axios.post("http://localhost:5000/users/login", {
                 email,
                 password,
             });
-            console.log(loginRes);
             setUserData({
                 token: loginRes.data.token,
                 user: loginRes.data.user,
@@ -42,13 +39,13 @@ export default function Register() {
 
         <div>
             <div className="row ">
-                <div class="col s12 center-align">
+                <div className="col s12 center-align">
                     <h4>Regístrate</h4>
                 </div>
             </div>
             <form onSubmit={submit}>
                 <div className="row ">
-                    <div class="col s12 ">
+                    <div className="col s12 ">
 
                         <input
                             className="input-field inline"
@@ -60,7 +57,7 @@ export default function Register() {
                 </div>
 
                 <div className="row ">
-                    <div class="col s12 ">
+                    <div className="col s12 ">
                         <input
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
@@ -70,7 +67,7 @@ export default function Register() {
                 </div>
 
                 <div className="row ">
-                    <div class="col s12 ">
+                    <div className="col s12 ">
                         <input
                             type="password"
                             onChange={(e) => setPasswordCheck(e.target.value)}
@@ -80,7 +77,7 @@ export default function Register() {
                 </div>
 
                 <div className="row ">
-                    <div class="col s12 ">
+                    <div className="col s12 ">
                         <input
                             type="text"
                             onChange={(e) => setDisplayName(e.target.value)}
@@ -90,7 +87,7 @@ export default function Register() {
                 </div>
 
                 <div className="row ">
-                    <div class="col s12 ">
+                    <div className="col s12 ">
                         <input
                             list="provincias"
                             name="provincias"

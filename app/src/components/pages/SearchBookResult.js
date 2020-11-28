@@ -6,20 +6,17 @@ export default function SearchBookResult() {
 
     const location = useLocation();
 
-    useEffect(() => {
-        console.log('a');
-        console.log(location);
-        console.log(location.state);
-    }, [location]);
-
-
-
-
     return (
         <div>
-            <h1>Resultado de la busqueda de libros</h1>
+            <div className="row">
+                <h4>Resultado de la busqueda de libros</h4>
+            </div>
             {location.state.map((book, index) => (
-                <Book key={index} book={book}></Book>
+                <div className="row" key={index}>
+                    <div className="col s12 m6">
+                        <Book key={index} book={book}></Book>
+                    </div>
+                </div>
             ))}
         </div>
     )

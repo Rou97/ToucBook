@@ -18,15 +18,17 @@ export default function Match() {
 
     return (
         <div>
-            Match
+            <h4>Match encontrados</h4>
             {matches ?
                 (matches.map((a, index) => {
                     return <div key={index}>
-                        <Book key={index} book={a[1]}></Book>
                         <User user={a[0]}></User>
+                        <Book key={index} book={a[1]}></Book>
                     </div>
                 })) :
-                (console.log(''))
+                (
+                    <h3>No hay match con nadie</h3>
+                )
             }
         </div>
     )

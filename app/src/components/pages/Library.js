@@ -7,6 +7,7 @@ import BookMood from "./BookMood.js";
 export default function Library() {
     const [res, setRes] = useState('');
     const location = useLocation();
+    const { isOtherUser } = location.state.data;
 
     useEffect(() => {
         try {
@@ -18,7 +19,6 @@ export default function Library() {
                 setRes(resData);
             }
             fetchData();
-            console.log('1')
         } catch (error) {
             console.error(error);
         }
@@ -27,14 +27,13 @@ export default function Library() {
 
     return (
         <div>
-            Biblioteca
+            <h3>Biblioteca</h3>
 
             {res.data ? (
                 res.data.listOfBooks.map((book, index) => {
                     return <div key={index}>
-                        <Book key={index} book={book}></Book>
                         {res.data.library.map((a, i) => {
-                            if (a.bookID === book._id) {
+                            if (a.bookID === book._id && isOtherUser !== true) {
 
                                 if (a.bookMood) {
                                     return (
@@ -47,10 +46,13 @@ export default function Library() {
                                 }
                             }
                         })}
+                        <Book key={index} book={book}></Book>
                     </div>
                 })
 
-            ) : (<div>Sad</div>)}
+            ) : (<div>
+                <h3>No hay libros en tu biblioteca</h3>
+            </div>)}
 
 
         </div>

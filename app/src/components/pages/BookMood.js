@@ -9,10 +9,10 @@ export default function BookMood(props) {
     useEffect(() => {
         try {
             if (props.a.bookMood) {
-                setMood('Lo tengo');
+                setMood('Estado: Lo tengo');
                 setButton('quiero');
             } else {
-                setMood('Lo quiero');
+                setMood('Estado: Lo quiero');
                 setButton('tengo');
             }
 
@@ -26,18 +26,19 @@ export default function BookMood(props) {
         x.bookMood = !x.bookMood;
         const b = await Axios.post("http://localhost:5000/library/changemood", x);
         if (b.data.bookMood) {
-            setMood('Lo quiero');
+            setMood('Estado: Lo quiero');
             setButton('tengo');
         } else {
-            setMood('Lo tengo');
+            setMood('Estado: Lo tengo');
             setButton('quiero');
         }
     }
 
     return (
-        <div>
-            {mood}
-            <button onClick={() => changeMood(props.a)}>Cambiar a lo {button}</button>
+        <div className="row">
+            <div className="col">
+                <button className="btn waves-effect blue" onClick={() => changeMood(props.a)}>{mood} || Cambiar estado</button>
+            </div>
         </div>
     )
 }

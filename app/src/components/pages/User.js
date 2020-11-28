@@ -7,7 +7,6 @@ export default function User(props) {
 
     function handleClick(e) {
         e.preventDefault();
-        console.log('The link was clicked.');
         history.push({
             pathname: '/userinfo',
             state: props.user
@@ -16,7 +15,7 @@ export default function User(props) {
 
     return (
         <div>
-            <h1 onClick={handleClick}>{props.user.displayName}</h1>
+            <h3 onClick={handleClick}>Propietario: {props.user.displayName}</h3>
         </div>
     )
 }

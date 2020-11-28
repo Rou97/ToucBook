@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Axios from "axios";
-import Header from "./components/layout/Header";
 import Home from "./components/pages/Home";
 import SearchBook from "./components/pages/SearchBook";
 import SearchBookResult from "./components/pages/SearchBookResult";
@@ -13,7 +12,6 @@ import Library from "./components/pages/Library";
 import Match from "./components/pages/Match";
 import UserInfo from "./components/pages/UserInfo";
 
-import "./style.css";
 
 export default function App() {
     const [userData, setUserData] = useState({
@@ -51,8 +49,6 @@ export default function App() {
         <>
             <BrowserRouter>
                 <UserContext.Provider value={{ userData, setUserData }}>
-                    {/* <Header /> */}
-                    {/* <div> */}
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/login" component={Login} />
@@ -64,7 +60,6 @@ export default function App() {
                         <Route path="/match" component={Match} />
                         <Route path="/userinfo" component={UserInfo} />
                     </Switch>
-                    {/* </div> */}
                 </UserContext.Provider>
             </BrowserRouter>
         </>
